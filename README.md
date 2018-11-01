@@ -1,0 +1,2 @@
+# frontend
+Webcampus frontend application
