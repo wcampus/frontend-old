@@ -1,13 +1,10 @@
 const pkg = require('./package')
+const nodeExternals = require("webpack-node-externals")
 
 module.exports = {
   mode: 'universal',
-
-  /*
-  ** Headers of the page
-  */
   head: {
-    title: pkg.name,
+    title: "Webcampus",
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -17,57 +14,61 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
-
-  /*
-  ** Customize the progress-bar color
-  */
-  loading: { color: '#3B8070' },
-
-  /*
-  ** Global CSS
-  */
+  // loading: { color: '#3B8070' },
   css: [
     'element-ui/lib/theme-default/index.css'
   ],
-
-  /*
-  ** Plugins to load before mounting the App
-  */
+  sassResources: ["~/assets/styles/combine.sass"],
   plugins: [
+    "~/plugins/axios",
+    "~/plugins/font-awesome",
+    { src: "~/plugins/nuxt-client-init.js", ssr: false },
     '@/plugins/element-ui'
   ],
-
-  /*
-  ** Nuxt.js modules
-  */
   modules: [
-    // Doc: https://github.com/nuxt-community/axios-module#usage
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    'nuxt-sass-resources-loader',
+    ["nuxt-i18n", require("./i18n/config")]
   ],
-
-  /*
-  ** Axios module configuration
-  */
   axios: {
-    // See https://github.com/nuxt-community/axios-module#options
+    host: "localhost",
+    prefix: "/api/",
+    port: "8000"
   },
-
-  /*
-  ** Build configuration
-  */
   build: {
-    /*
-    ** You can extend webpack config here
-    */
-    extend(config, ctx) {
-      // Run ESLint on save
-      if (ctx.isDev && ctx.isClient) {
+    vendor: ["vue-awesome"],
+    postcss: [
+      require("postcss-nested")(),
+      require("postcss-responsive-type")(),
+      require("postcss-hexrgba")(),
+      require("autoprefixer")()
+    ],
+    extend(config, { isDev, isClient, isServer }) {
+      if (isDev && isClient) {
         config.module.rules.push({
-          enforce: 'pre',
+          enforce: "pre",
           test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: /(node_modules)/
+          loader: "eslint-loader",
+          exclude: /(node_modules)/,
+          options: {
+            fix: true
+          }
         })
+        config.module.rules.find(
+          el => el.loader === "vue-loader"
+        ).options.loaders.i18n =
+          "@kazupon/vue-i18n-loader"
+      }
+
+      if (isServer) {
+        config.externals = [
+          nodeExternals({
+            whitelist: [
+              /es6-promise|\.(?!(?:js|json)$).{1,5}$/i,
+              /^vue-awesome/
+            ]
+          })
+        ]
       }
     }
   }
