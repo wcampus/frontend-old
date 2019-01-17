@@ -28,8 +28,18 @@ module.exports = {
   modules: [
     '@nuxtjs/axios',
     'nuxt-sass-resources-loader',
-    ["nuxt-i18n", require("./i18n/config")]
+    ["nuxt-i18n", require("./i18n/config")],
+    "nuxt-mq"
   ],
+  mq: {
+    defaultBreakpoint: 'default',
+    breakpoints: {
+      mobile: 450,
+      tablet: 900,
+      laptop: 1250,
+      desktop: Infinity
+    }
+  },
   axios: {
     host: "localhost",
     prefix: "/api/",

@@ -1,30 +1,25 @@
 @mixin screen($size)
-  $xl: "(min-width: 1024px)"
-  $lg: "(min-width: 1024px)"
-  $md: "(min-width: 992px) and (max-width: 1200px)"
-  $sm: "(min-width: 768px) and (max-width: 992px)"
-  $xs: "(max-width: 767px)"
+  $desktop: "(min-width: 1251px)"
+  $laptop: "(min-width: 901px) and (max-width: 1250px)"
+  $tablet: "(min-width: 451px) and (max-width: 900px)"
+  $mobile: "(max-width: 450px)"
 
-  @if $size == xl
-    @media only screen and #{$xl} 
+  @if $size == desktop
+    @media only screen and #{$desktop} 
       @content
 
-  @else if $size == lg
-    @media only screen and #{$lg} 
+  @else if $size == laptop 
+    @media only screen and #{$laptop} 
       @content
 
-  @else if $size == md 
-    @media only screen and #{$md} 
+  @else if $size == tablet 
+    @media only screen and #{$tablet} 
       @content
 
-  @else if $size == sm 
-    @media only screen and #{$sm} 
-      @content
-
-  @else if $size == xs
-    @media only screen and #{$xs} 
+  @else if $size == mobile
+    @media only screen and #{$mobile} 
       @content
 
   @else
-    @media only screen and #{$size} 
+    @media only screen and (#{$size})
       @content
