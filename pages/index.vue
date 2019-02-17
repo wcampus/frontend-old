@@ -1,9 +1,12 @@
 <template lang="pug">
 div
   container
-    grid-component(:column="$mq | mq({phone: 2,tablet: 3,laptop: 4})")
+    div
       .div
         p Hey
+      .div
+        p Hey
+
 </template>
 
 <script>
@@ -18,5 +21,7 @@ export default {
 
 <style lang="sass" scoped>
 .div
-  background-color: red
+  background-color: white
+  padding: 5px 10px
+  margin: 20px 0
 </style>

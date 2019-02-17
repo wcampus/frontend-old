@@ -15,15 +15,16 @@ export default {
   padding-left: 15px
   margin-right: auto
   margin-left: auto
+  width: 80%
 
   &.mobile
-    width: 200px
+    width: 95%
   
   &.tablet
-    width: 300px
+    width: 90%
   
   &.laptop
-    width: 400px
+    width: 85%
   
 </style>
 
