@@ -5,7 +5,7 @@ div
       .div
         p Hey
       .div
-        p Hey
+        p Heydkfj
 
 </template>
 
@@ -22,6 +22,6 @@ export default {
 <style lang="sass" scoped>
 .div
   background-color: white
-  padding: 5px 10px
-  margin: 20px 0
+  padding: 5px 20px
+  margin: 15px 0
 </style>

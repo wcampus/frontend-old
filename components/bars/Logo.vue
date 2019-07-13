@@ -3,10 +3,13 @@
 .logo
   img(:src="getLogoImage", :alt="getLogoAlt", :height="getLogoHeight")
   template(v-if="getLogoText")
-    img(:src="getLogoText", :alt="getLogoAlt+'-text'", :height="getLogoHeight", class="hidden-xs-only")
+    h1(:height="getLogoHeight", class="hidden-xs-only") webcampus
+    
 </template>
 
+
 <script>
+//- img(:src="getLogoText", :alt="getLogoAlt+'-text'", :height="getLogoHeight", class="hidden-xs-only")
 // import BlurShadow from "~/components/additional/BlurShadow"
  //- BlurShadow
 
@@ -72,7 +75,8 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-// @import "~/assets/styles/fonts/proxima-nova.sass"
+@import "~/assets/styles/fonts/proxima-nova.sass"
+@import "assets/styles/fonts/lato.sass"
 
 .logo 
   display: flex
@@ -83,10 +87,11 @@ img:first-child
   margin-right: 3px
 
 h1
-  // font-family: 'Proxima Nova Bold'
+  font-family: "Lato", Helvetica, sans-serif !important
   font-size: 16px
-  font-weight: bold
-  vertical-align: baseline
-  letter-spacing: 2px
+  letter-spacing: 2.4px
+  color: #2c3e50
+  margin: 0
+  padding: 0px 0px 5px 10px
   
 </style>

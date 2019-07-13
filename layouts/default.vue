@@ -1,25 +1,49 @@
+<i18n>
+{
+	"en": {
+    "search": "Search"
+	},
+	"ru": {
+    "search": "Найти"
+	},
+	"kz": {
+    "search": "İzdew"
+	}
+}
+</i18n>
+
 <template lang="pug">
-.default-layout
-  Sidebar
-  section
-    .navbar
-      span Search...
-    nuxt.content
+ssr-loading(v-cloak)
+  .default-layout
+      Sidebar
+      section
+        .navbar
+          span
+            fa(name="search", scale="0.7")
+            span {{ $t("search") }}
+        nuxt.content
 </template>
 
 <script>
 import Sidebar from '~/components/bars/Sidebar'
+import SSRLoading from "~/components/toolkit/SSRLoading"
 
 export default {
   components: {
-    Sidebar
+    Sidebar,
+    SsrLoading: SSRLoading
   }
 }
 </script>
 
 
 <style lang="sass">
+@import "assets/styles/fonts/lato.sass"
+
 .default-layout
+  font-family: "Lato", Helvetica, sans-serif !important
+  font-weight: 400
+  color: #2c3e50
   padding: 0
   margin: 0
   height: 100%
@@ -36,7 +60,8 @@ section
 
     
   .navbar
-    padding: 29px 20px
+    padding: 27px 20px
+    background: #FFFFFF
     width: 100%
     margin: 0
     height: 40px
@@ -46,4 +71,13 @@ section
     display: flex
     flex-direction: column
     justify-content: center
+    
+    span span
+      margin-left: 5px
+</style>
+
+<style>
+  [v-cloak] {
+    display: none;
+  }
 </style>
