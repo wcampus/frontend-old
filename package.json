@@ -22,7 +22,7 @@
     "gsap": "^2.0.2",
     "js-cookie": "^2.2.0",
     "moment": "^2.23.0",
-    "node-sass": "^4.11.0",
+    "node-sass": "^4.13.1",
     "nuxt": "^1.0.0",
     "nuxt-i18n": "^5.4.4",
     "nuxt-sass-resources-loader": "^2.0.5",
